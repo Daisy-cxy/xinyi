@@ -4,10 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#245a45">
-  <meta name="description" content="计算机网络基础在线答题：100 道选择题、即时判题、错题复习、模拟考试与学习进度保存。">
+  <meta name="description" content="计算机网络基础在线答题：100 道选择题、12 道填空题、8 道解答题，支持即时判题、错题复习、模拟考试与学习进度保存。">
   <title>网知 · 计算机网络每日练习</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
+  <link rel="stylesheet" href="assets/extended.css">
 </head>
 <body>
   <svg class="svg-sprite" aria-hidden="true">
@@ -45,6 +46,8 @@
           <button class="nav-item" data-action="sequence"><svg class="icon"><use href="#i-book"></use></svg><span>顺序练习</span><span class="nav-badge">100</span></button>
           <button class="nav-item" data-action="random"><svg class="icon"><use href="#i-shuffle"></use></svg><span>随机练习</span><span class="nav-badge">30</span></button>
           <button class="nav-item" data-action="exam"><svg class="icon"><use href="#i-exam"></use></svg><span>模拟考试</span><span class="nav-badge">45′</span></button>
+          <button class="nav-item" data-action="fill"><svg class="icon"><use href="#i-check"></use></svg><span>填空题</span><span class="nav-badge">12</span></button>
+          <button class="nav-item" data-action="essay"><svg class="icon"><use href="#i-book"></use></svg><span>解答题</span><span class="nav-badge">8</span></button>
           <button class="nav-item" data-action="wrong"><svg class="icon"><use href="#i-flag"></use></svg><span>错题本</span><span class="nav-badge" id="wrongNavCount">0</span></button>
           <button class="nav-item" data-action="favorites"><svg class="icon"><use href="#i-star"></use></svg><span>我的收藏</span><span class="nav-badge" id="favoriteNavCount">0</span></button>
         </nav>
@@ -59,7 +62,7 @@
 
       <div class="sidebar-footer">
         <button class="reset-button" id="resetAll"><svg class="icon"><use href="#i-refresh"></use></svg>重置学习记录</button>
-        <p>题库来源：用户提供的 PDF<br>100 道选择题 · 已校对</p>
+        <p>题库来源：用户提供的 PDF<br>100 选择 · 12 填空 · 8 解答</p>
       </div>
     </aside>
 
@@ -135,6 +138,20 @@
             <strong>模拟考试</strong>
             <p>45 分钟限时完成，交卷后统一查看成绩与解析。</p>
             <span class="mode-foot"><b>30</b> 题 · 45 分钟</span>
+          </button>
+<button class="mode-card" data-action="fill">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-check"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">FILL IN THE BLANKS</span>
+            <strong>填空题</strong>
+            <p>用关键字补齐网络概念，系统会自动完成标准化校验与判分。</p>
+            <span class="mode-foot"><b>12</b> 题 · 自动判分</span>
+          </button>
+          <button class="mode-card" data-action="essay">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-book"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">SHORT ANSWER</span>
+            <strong>解答题</strong>
+            <p>先写下完整思路，再对照参考答案与评分要点完成自评。</p>
+            <span class="mode-foot"><b>8</b> 题 · 参考解析</span>
           </button>
           <button class="mode-card" data-action="wrong">
             <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-flag"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
@@ -249,6 +266,41 @@
           </div>
           <div class="result-note" id="resultNote"></div>
         </div>
+</section>
+
+      <section class="view extended-view" id="extendedView" hidden>
+        <div class="extended-heading">
+          <button class="back-link" data-action="home">← 返回学习首页</button>
+          <div class="extended-title-row">
+            <div>
+              <p class="eyebrow" id="extEyebrow">FILL IN THE BLANKS</p>
+              <h1 id="extTitle">填空题专项</h1>
+              <p id="extSubtitle">用关键字补齐网络概念，提交后立即判分并查看解析。</p>
+            </div>
+            <div class="extended-tabs" role="tablist" aria-label="切换新题型">
+              <button class="ext-kind-tab active" data-ext-action="switch-fill" data-kind="fill" role="tab">填空题</button>
+              <button class="ext-kind-tab" data-ext-action="switch-essay" data-kind="essay" role="tab">解答题</button>
+              <button class="ext-review-tab" id="extReviewTab" data-ext-action="review">待复习 0</button>
+            </div>
+          </div>
+        </div>
+        <div class="extended-layout">
+          <article class="extended-card" id="extCard" aria-live="polite"></article>
+          <aside class="extended-panel">
+            <div class="extended-panel-label">当前题型进度</div>
+            <div class="extended-panel-score"><strong id="extProgress">0%</strong><span>已学习</span></div>
+            <div class="extended-panel-track"><span id="extProgressBar"></span></div>
+            <div class="extended-panel-grid">
+              <div><span>已答</span><strong id="extAnswered">0 / 12</strong></div>
+              <div><span>掌握</span><strong id="extCorrect">0</strong></div>
+              <div><span>待复习</span><strong id="extReview">0</strong></div>
+              <div><span>正确率</span><strong id="extAccuracy">—</strong></div>
+            </div>
+            <p class="extended-panel-note" id="extPanelNote">每个空独立校验；全部答对后本题记为掌握。</p>
+            <div class="extended-panel-rule"></div>
+            <div class="extended-panel-tip"><svg class="icon"><use href="#i-spark"></use></svg><span>填空题按空格自动判分；解答题结合参考答案和评分要点自评。</span></div>
+          </aside>
+        </div>
       </section>
     </main>
   </div>
@@ -268,9 +320,9 @@
   <dialog class="about-dialog" id="aboutDialog">
     <div class="dialog-head"><div><p class="eyebrow">ABOUT THE BANK</p><h2>题库说明</h2></div><button class="icon-button" id="closeAbout" aria-label="关闭"><svg class="icon"><use href="#i-x"></use></svg></button></div>
     <div class="about-content">
-      <p>本站将你提供的《计算机网络基础题库及答案》扫描件中的 <strong>100 道选择题</strong>整理为在线练习，并对个别明显的 OCR 误识别与答案内容进行了技术校对。</p>
-      <p>支持顺序练习、随机练习、45 分钟模拟考试、错题本、收藏和本地进度保存。所有学习数据仅保存在当前浏览器的 localStorage 中。</p>
-      <div class="about-grid"><div><span>题库</span><strong>100</strong></div><div><span>题型</span><strong>单选 / 多选</strong></div><div><span>来源</span><strong>用户 PDF</strong></div></div>
+      <p>本站将你提供的《计算机网络基础题库及答案》扫描件中的 <strong>100 道选择题</strong>整理为在线练习，并补充了 <strong>12 道填空题和 8 道解答题</strong>，覆盖网络体系、IP 路由、TCP/UDP 与网络安全。</p>
+      <p>支持顺序练习、随机练习、45 分钟模拟考试、填空题自动判分、解答题参考解析与自评、错题本、收藏和本地进度保存。所有学习数据仅保存在当前浏览器的 localStorage 中。</p>
+      <div class="about-grid"><div><span>题库</span><strong>120</strong></div><div><span>题型</span><strong>选择 / 填空 / 解答</strong></div><div><span>来源</span><strong>PDF + 扩展</strong></div></div>
     </div>
   </dialog>
 
@@ -285,6 +337,8 @@
 
   <script src="assets/questions.js" defer></script>
   <script src="assets/app.js" defer></script>
+  <script src="assets/practice-data.js" defer></script>
+  <script src="assets/extended.js" defer></script>
 </body>
 </html>
 
