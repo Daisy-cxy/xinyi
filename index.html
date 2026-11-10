@@ -1,0 +1,290 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#245a45">
+  <meta name="description" content="计算机网络基础在线答题：100 道选择题、即时判题、错题复习、模拟考试与学习进度保存。">
+  <title>网知 · 计算机网络每日练习</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+  <svg class="svg-sprite" aria-hidden="true">
+    <symbol id="i-grid" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></symbol>
+    <symbol id="i-shuffle" viewBox="0 0 24 24"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/></symbol>
+    <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2Z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.5 2.9 5.9 6.5.9-4.7 4.6 1.1 6.5-5.8-3-5.8 3 1.1-6.5-4.7-4.6 6.5-.9L12 2.5Z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></symbol>
+    <symbol id="i-chevron" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12 4 4L19 6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="m6 6 12 12"/><path d="m18 6-12 12"/></symbol>
+    <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 5.7"/><path d="M20 4v7h-7"/></symbol>
+    <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></symbol>
+    <symbol id="i-exam" viewBox="0 0 24 24"><path d="M9 3h6l1 2h3v16H5V5h3l1-2Z"/><path d="M8 11h8M8 15h5"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 24 24"><path d="M4 19V9M10 19V5M16 19v-7M22 19V3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5 21V4"/><path d="M5 5h10l-2 4 2 4H5"/></symbol>
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="m12 3 1.7 5.3L19 10l-5.3 1.7L12 17l-1.7-5.3L5 10l5.3-1.7L12 3Z"/><path d="m19 16 .7 2.3L22 19l-2.3.7L19 22l-.7-2.3L16 19l2.3-.7L19 16Z"/></symbol>
+  </svg>
+
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="主导航">
+      <button class="mobile-close icon-button" id="mobileClose" aria-label="关闭导航"><svg class="icon"><use href="#i-x"></use></svg></button>
+      <a class="brand" href="#" data-action="home" aria-label="返回首页">
+        <span class="brand-icon">网</span>
+        <span class="brand-copy"><strong>网知</strong><small>NETWORK STUDY</small></span>
+      </a>
+
+      <div class="sidebar-section">
+        <p class="nav-label">我的学习</p>
+        <nav class="nav">
+          <button class="nav-item active" data-action="home"><svg class="icon"><use href="#i-grid"></use></svg><span>学习首页</span></button>
+          <button class="nav-item" data-action="sequence"><svg class="icon"><use href="#i-book"></use></svg><span>顺序练习</span><span class="nav-badge">100</span></button>
+          <button class="nav-item" data-action="random"><svg class="icon"><use href="#i-shuffle"></use></svg><span>随机练习</span><span class="nav-badge">30</span></button>
+          <button class="nav-item" data-action="exam"><svg class="icon"><use href="#i-exam"></use></svg><span>模拟考试</span><span class="nav-badge">45′</span></button>
+          <button class="nav-item" data-action="wrong"><svg class="icon"><use href="#i-flag"></use></svg><span>错题本</span><span class="nav-badge" id="wrongNavCount">0</span></button>
+          <button class="nav-item" data-action="favorites"><svg class="icon"><use href="#i-star"></use></svg><span>我的收藏</span><span class="nav-badge" id="favoriteNavCount">0</span></button>
+        </nav>
+      </div>
+
+      <div class="side-goal">
+        <div class="goal-head"><svg class="icon"><use href="#i-spark"></use></svg><span>今日目标</span></div>
+        <strong id="goalText">完成 20 道题</strong>
+        <div class="goal-track"><span id="goalBar"></span></div>
+        <p id="goalCaption">从一道题开始，保持手感。</p>
+      </div>
+
+      <div class="sidebar-footer">
+        <button class="reset-button" id="resetAll"><svg class="icon"><use href="#i-refresh"></use></svg>重置学习记录</button>
+        <p>题库来源：用户提供的 PDF<br>100 道选择题 · 已校对</p>
+      </div>
+    </aside>
+
+    <div class="sidebar-scrim" id="sidebarScrim"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <button class="mobile-menu icon-button" id="mobileMenu" aria-label="打开导航"><svg class="icon"><use href="#i-menu"></use></svg></button>
+        <div class="breadcrumb">学习空间 <span id="breadcrumbCurrent">/ 学习首页</span></div>
+        <div class="top-actions">
+          <div class="source-pill"><span></span>PDF 题库</div>
+          <button class="icon-button top-help" id="showAbout" aria-label="题库说明"><svg class="icon"><use href="#i-info"></use></svg></button>
+        </div>
+      </header>
+
+      <section class="view dashboard-view" id="homeView">
+        <div class="hero">
+          <div class="hero-copy">
+            <p class="eyebrow">SMALL STEPS, STEADY PROGRESS</p>
+            <h1>把网络知识，<br><em>慢慢变成底气。</em></h1>
+            <p class="hero-desc">计算机网络基础 · 100 道题，覆盖体系结构、局域网、IP 路由、TCP/UDP 与网络安全。</p>
+            <div class="hero-actions">
+              <button class="primary-button" data-action="sequence">开始今日练习 <svg class="icon"><use href="#i-arrow"></use></svg></button>
+              <button class="text-button" data-action="exam">进入模拟考试</button>
+            </div>
+            <div class="hero-meta">
+              <span><i></i>进度自动保存</span>
+              <span><i></i>即时判题解析</span>
+              <span><i></i>错题自动归档</span>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbital orbital-one"></div>
+            <div class="orbital orbital-two"></div>
+            <div class="network-card card-top"><span>IP</span><strong>192.168.1.1</strong></div>
+            <div class="network-card card-mid"><span>TCP</span><strong>可靠传输</strong></div>
+            <div class="network-card card-bottom"><span>HTTP</span><strong>应用层</strong></div>
+            <div class="hero-core"><b>100</b><small>QUESTIONS</small></div>
+            <i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i>
+          </div>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat-item"><span>题库总量</span><strong>100<small>题</small></strong></div>
+          <div class="stat-item"><span>累计已答</span><strong id="homeAnswered">0<small>题</small></strong></div>
+          <div class="stat-item"><span>正确率</span><strong id="homeAccuracy">—</strong></div>
+          <div class="stat-item"><span>掌握进度</span><strong id="homeProgress">0<small>%</small></strong></div>
+        </div>
+
+        <div class="section-heading">
+          <div><p class="eyebrow">PRACTICE MODES</p><h2>选择你的练习方式</h2></div>
+          <p>按自己的节奏来，每天进步一点就很好。</p>
+        </div>
+
+        <div class="mode-grid">
+          <button class="mode-card mode-featured" data-action="sequence">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-book"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">SEQUENTIAL</span>
+            <strong>顺序练习</strong>
+            <p>从第 1 题开始，完整体验 100 道题的章节脉络。</p>
+            <span class="mode-foot"><b>100</b> 题 · 即时解析</span>
+          </button>
+          <button class="mode-card" data-action="random">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-shuffle"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">RANDOM SET</span>
+            <strong>随机练习</strong>
+            <p>打乱题目顺序，用新的组合检验真实掌握程度。</p>
+            <span class="mode-foot"><b>30</b> 题 · 随机抽题</span>
+          </button>
+          <button class="mode-card" data-action="exam">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-exam"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">MOCK EXAM</span>
+            <strong>模拟考试</strong>
+            <p>45 分钟限时完成，交卷后统一查看成绩与解析。</p>
+            <span class="mode-foot"><b>30</b> 题 · 45 分钟</span>
+          </button>
+          <button class="mode-card" data-action="wrong">
+            <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-flag"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
+            <span class="mode-kicker">REVIEW</span>
+            <strong>错题复习</strong>
+            <p>把错题重新做一遍，让薄弱点真正变成得分点。</p>
+            <span class="mode-foot"><b id="wrongCardCount">0</b> 题 · 自动归档</span>
+          </button>
+        </div>
+
+        <div class="overview-grid">
+          <section class="overview-card">
+            <div class="section-heading compact"><div><p class="eyebrow">QUESTION MAP</p><h2>题库概览</h2></div><span class="soft-label">100 题</span></div>
+            <div class="category-bars" id="categoryBars"></div>
+          </section>
+          <section class="quote-card">
+            <svg class="quote-mark" viewBox="0 0 40 40" aria-hidden="true"><path d="M10 27c-4 0-6-3-6-6 0-6 4-11 10-14v4c-3 2-5 4-5 7 3 0 5 2 5 5s-2 4-4 4Zm18 0c-4 0-6-3-6-6 0-6 4-11 10-14v4c-3 2-5 4-5 7 3 0 5 2 5 5s-2 4-4 4Z"/></svg>
+            <p>“网络的价值不只在于连接设备，更在于理解每一次数据交换背后的规则。”</p>
+            <span>每天 15 分钟 · 建立稳定手感</span>
+          </section>
+        </div>
+      </section>
+
+      <section class="view quiz-view" id="quizView" hidden>
+        <div class="quiz-heading">
+          <div>
+            <button class="back-link" data-action="home">← 返回学习首页</button>
+            <h1 id="quizTitle">顺序练习</h1>
+            <p id="quizSubtitle">按章节顺序完成题目，提交后立即查看答案解析。</p>
+          </div>
+          <div class="quiz-head-actions">
+            <div class="timer-pill" id="timerPill"><svg class="icon"><use href="#i-clock"></use></svg><span id="timerText">不限时</span></div>
+            <button class="outline-button" id="openSheetTop">答题卡 <span id="sheetProgress">0/100</span></button>
+          </div>
+        </div>
+
+        <div class="quiz-toolbar">
+          <div class="filter-row" id="filterRow">
+            <button class="filter-chip active" data-filter="全部">全部</button>
+            <button class="filter-chip" data-filter="基础">网络基础</button>
+            <button class="filter-chip" data-filter="体系">体系结构</button>
+            <button class="filter-chip" data-filter="通信">数据通信</button>
+            <button class="filter-chip" data-filter="局域网">局域网</button>
+            <button class="filter-chip" data-filter="网络层">网络层</button>
+            <button class="filter-chip" data-filter="传输层">传输层</button>
+            <button class="filter-chip" data-filter="应用层">应用层</button>
+            <button class="filter-chip" data-filter="安全">网络安全</button>
+          </div>
+          <label class="search-box"><svg class="icon"><use href="#i-search"></use></svg><input id="questionSearch" type="search" placeholder="搜索题目或知识点" autocomplete="off"></label>
+        </div>
+
+        <div class="quiz-layout">
+          <article class="question-card" id="questionCard">
+            <div class="question-meta">
+              <div><span class="question-no" id="questionNo">01</span><span class="question-type" id="questionType">单选题</span><span class="question-tag" id="questionTag">网络基础</span></div>
+              <button class="favorite-button" id="favoriteButton" aria-label="收藏本题"><svg class="icon"><use href="#i-star"></use></svg><span>收藏</span></button>
+            </div>
+            <div class="question-progress-line"><span id="questionProgressBar"></span></div>
+            <h2 id="questionText">正在加载题目…</h2>
+            <div class="options-list" id="optionsList" role="group" aria-label="答案选项"></div>
+            <div class="feedback" id="feedback" hidden>
+              <div class="feedback-title"><span class="feedback-icon"><svg class="icon"><use href="#i-check"></use></svg></span><strong id="feedbackTitle">回答正确</strong><span id="feedbackAnswer"></span></div>
+              <p id="feedbackText"></p>
+            </div>
+            <div class="question-actions">
+              <button class="ghost-button" id="prevButton"><span>←</span> 上一题</button>
+              <div class="action-right">
+                <button class="outline-button" id="skipButton">跳过</button>
+                <button class="primary-button" id="submitButton">确认答案 <svg class="icon"><use href="#i-check"></use></svg></button>
+                <button class="primary-button" id="nextButton" hidden>下一题 <svg class="icon"><use href="#i-arrow"></use></svg></button>
+              </div>
+            </div>
+          </article>
+
+          <aside class="study-panel">
+            <div class="panel-label">学习进度</div>
+            <div class="progress-ring" id="progressRing"><div><strong id="progressPercent">0%</strong><span>已完成</span></div></div>
+            <div class="study-numbers">
+              <div><span>已答</span><strong id="answeredCount">0 / 100</strong></div>
+              <div><span>正确</span><strong id="correctCount">0</strong></div>
+              <div><span>错误</span><strong id="wrongCount">0</strong></div>
+            </div>
+            <div class="panel-divider"></div>
+            <div class="shortcut-list">
+              <p><kbd>A</kbd><kbd>B</kbd><kbd>C</kbd><kbd>D</kbd><span>快速选择</span></p>
+              <p><kbd>Enter</kbd><span>确认 / 下一题</span></p>
+              <p><kbd>←</kbd><kbd>→</kbd><span>切换题目</span></p>
+            </div>
+            <div class="panel-tip"><svg class="icon"><use href="#i-spark"></use></svg><p>先理解，再记忆。答错的题会自动进入错题本。</p></div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view result-view" id="resultView" hidden>
+        <div class="result-card">
+          <p class="eyebrow">PRACTICE REPORT</p>
+          <h1 id="resultHeading">这一轮，辛苦了。</h1>
+          <p class="result-subtitle" id="resultSubtitle">每一次复盘，都会让知识更牢一点。</p>
+          <div class="result-score-wrap">
+            <div class="result-ring" id="resultRing"><div><strong id="resultScore">0</strong><span>分</span></div></div>
+            <div class="result-summary">
+              <div><span>答对</span><strong id="resultCorrect">0</strong></div>
+              <div><span>答错</span><strong id="resultWrong">0</strong></div>
+              <div><span>未答</span><strong id="resultSkipped">0</strong></div>
+              <div><span>用时</span><strong id="resultTime">00:00</strong></div>
+            </div>
+          </div>
+          <div class="result-actions">
+            <button class="primary-button" id="reviewWrong">查看错题解析</button>
+            <button class="outline-button" id="restartSame">再练一次</button>
+            <button class="text-button" data-action="home">返回首页</button>
+          </div>
+          <div class="result-note" id="resultNote"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <button class="floating-sheet" id="floatingSheet" hidden><svg class="icon"><use href="#i-grid"></use></svg><span>答题卡</span></button>
+
+  <dialog class="sheet-dialog" id="sheetDialog">
+    <div class="dialog-head">
+      <div><p class="eyebrow">ANSWER SHEET</p><h2>答题卡</h2></div>
+      <button class="icon-button" id="closeSheet" aria-label="关闭答题卡"><svg class="icon"><use href="#i-x"></use></svg></button>
+    </div>
+    <div class="sheet-legend"><span><i class="legend-current"></i>当前</span><span><i class="legend-done"></i>已答</span><span><i class="legend-correct"></i>正确</span><span><i class="legend-wrong"></i>错误</span></div>
+    <div class="sheet-grid" id="sheetGrid"></div>
+    <div class="sheet-footer"><span id="sheetCaption">已答 0 / 100</span><button class="primary-button" id="submitExamFromSheet">提交答卷</button></div>
+  </dialog>
+
+  <dialog class="about-dialog" id="aboutDialog">
+    <div class="dialog-head"><div><p class="eyebrow">ABOUT THE BANK</p><h2>题库说明</h2></div><button class="icon-button" id="closeAbout" aria-label="关闭"><svg class="icon"><use href="#i-x"></use></svg></button></div>
+    <div class="about-content">
+      <p>本站将你提供的《计算机网络基础题库及答案》扫描件中的 <strong>100 道选择题</strong>整理为在线练习，并对个别明显的 OCR 误识别与答案内容进行了技术校对。</p>
+      <p>支持顺序练习、随机练习、45 分钟模拟考试、错题本、收藏和本地进度保存。所有学习数据仅保存在当前浏览器的 localStorage 中。</p>
+      <div class="about-grid"><div><span>题库</span><strong>100</strong></div><div><span>题型</span><strong>单选 / 多选</strong></div><div><span>来源</span><strong>用户 PDF</strong></div></div>
+    </div>
+  </dialog>
+
+  <dialog class="confirm-dialog" id="confirmDialog">
+    <div class="confirm-icon"><svg class="icon"><use href="#i-refresh"></use></svg></div>
+    <h2>重置全部学习记录？</h2>
+    <p>已答记录、错题和收藏都会被清空，此操作不能撤销。</p>
+    <div class="confirm-actions"><button class="outline-button" id="cancelReset">取消</button><button class="danger-button" id="confirmReset">确认重置</button></div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="assets/questions.js" defer></script>
+  <script src="assets/app.js" defer></script>
+</body>
+</html>
+
