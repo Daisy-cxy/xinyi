@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#245a45">
-  <meta name="description" content="计算机网络基础在线答题：100 道选择题、12 道填空题、8 道解答题，支持即时判题、错题复习、模拟考试与学习进度保存。">
+  <meta name="description" content="计算机网络基础在线答题：100 道选择题、100 道填空题、8 道解答题，支持即时判题、错题复习、模拟考试与学习进度保存。">
   <title>网知 · 计算机网络每日练习</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="assets/styles.css">
@@ -46,7 +46,7 @@
           <button class="nav-item" data-action="sequence"><svg class="icon"><use href="#i-book"></use></svg><span>顺序练习</span><span class="nav-badge">100</span></button>
           <button class="nav-item" data-action="random"><svg class="icon"><use href="#i-shuffle"></use></svg><span>随机练习</span><span class="nav-badge">30</span></button>
           <button class="nav-item" data-action="exam"><svg class="icon"><use href="#i-exam"></use></svg><span>模拟考试</span><span class="nav-badge">45′</span></button>
-          <button class="nav-item" data-action="fill"><svg class="icon"><use href="#i-check"></use></svg><span>填空题</span><span class="nav-badge">12</span></button>
+          <button class="nav-item" data-action="fill"><svg class="icon"><use href="#i-check"></use></svg><span>填空题</span><span class="nav-badge">100</span></button>
           <button class="nav-item" data-action="essay"><svg class="icon"><use href="#i-book"></use></svg><span>解答题</span><span class="nav-badge">8</span></button>
           <button class="nav-item" data-action="wrong"><svg class="icon"><use href="#i-flag"></use></svg><span>错题本</span><span class="nav-badge" id="wrongNavCount">0</span></button>
           <button class="nav-item" data-action="favorites"><svg class="icon"><use href="#i-star"></use></svg><span>我的收藏</span><span class="nav-badge" id="favoriteNavCount">0</span></button>
@@ -62,7 +62,7 @@
 
       <div class="sidebar-footer">
         <button class="reset-button" id="resetAll"><svg class="icon"><use href="#i-refresh"></use></svg>重置学习记录</button>
-        <p>题库来源：用户提供的 PDF<br>100 选择 · 12 填空 · 8 解答</p>
+        <p>题库来源：用户提供的 PDF<br>100 选择 · 100 填空 · 8 解答</p>
       </div>
     </aside>
 
@@ -83,7 +83,7 @@
           <div class="hero-copy">
             <p class="eyebrow">SMALL STEPS, STEADY PROGRESS</p>
             <h1>把网络知识，<br><em>慢慢变成底气。</em></h1>
-            <p class="hero-desc">计算机网络基础 · 100 道题，覆盖体系结构、局域网、IP 路由、TCP/UDP 与网络安全。</p>
+            <p class="hero-desc">计算机网络基础 · 100 道选择题，另含 100 道填空题与 8 道解答题，覆盖体系结构、局域网、IP 路由、TCP/UDP 与网络安全。</p>
             <div class="hero-actions">
               <button class="primary-button" data-action="sequence">开始今日练习 <svg class="icon"><use href="#i-arrow"></use></svg></button>
               <button class="text-button" data-action="exam">进入模拟考试</button>
@@ -100,13 +100,13 @@
             <div class="network-card card-top"><span>IP</span><strong>192.168.1.1</strong></div>
             <div class="network-card card-mid"><span>TCP</span><strong>可靠传输</strong></div>
             <div class="network-card card-bottom"><span>HTTP</span><strong>应用层</strong></div>
-            <div class="hero-core"><b>100</b><small>QUESTIONS</small></div>
+            <div class="hero-core"><b>208</b><small>QUESTIONS</small></div>
             <i class="node node-a"></i><i class="node node-b"></i><i class="node node-c"></i>
           </div>
         </div>
 
         <div class="stat-strip">
-          <div class="stat-item"><span>题库总量</span><strong>100<small>题</small></strong></div>
+          <div class="stat-item"><span>选择题库</span><strong>100<small>题</small></strong></div>
           <div class="stat-item"><span>累计已答</span><strong id="homeAnswered">0<small>题</small></strong></div>
           <div class="stat-item"><span>正确率</span><strong id="homeAccuracy">—</strong></div>
           <div class="stat-item"><span>掌握进度</span><strong id="homeProgress">0<small>%</small></strong></div>
@@ -144,7 +144,7 @@
             <span class="mode-kicker">FILL IN THE BLANKS</span>
             <strong>填空题</strong>
             <p>用关键字补齐网络概念，系统会自动完成标准化校验与判分。</p>
-            <span class="mode-foot"><b>12</b> 题 · 自动判分</span>
+            <span class="mode-foot"><b>100</b> 题 · 自动判分</span>
           </button>
           <button class="mode-card" data-action="essay">
             <span class="mode-top"><span class="mode-icon"><svg class="icon"><use href="#i-book"></use></svg></span><span class="mode-arrow"><svg class="icon"><use href="#i-arrow"></use></svg></span></span>
@@ -291,7 +291,7 @@
             <div class="extended-panel-score"><strong id="extProgress">0%</strong><span>已学习</span></div>
             <div class="extended-panel-track"><span id="extProgressBar"></span></div>
             <div class="extended-panel-grid">
-              <div><span>已答</span><strong id="extAnswered">0 / 12</strong></div>
+              <div><span>已答</span><strong id="extAnswered">0 / 100</strong></div>
               <div><span>掌握</span><strong id="extCorrect">0</strong></div>
               <div><span>待复习</span><strong id="extReview">0</strong></div>
               <div><span>正确率</span><strong id="extAccuracy">—</strong></div>
@@ -320,9 +320,9 @@
   <dialog class="about-dialog" id="aboutDialog">
     <div class="dialog-head"><div><p class="eyebrow">ABOUT THE BANK</p><h2>题库说明</h2></div><button class="icon-button" id="closeAbout" aria-label="关闭"><svg class="icon"><use href="#i-x"></use></svg></button></div>
     <div class="about-content">
-      <p>本站将你提供的《计算机网络基础题库及答案》扫描件中的 <strong>100 道选择题</strong>整理为在线练习，并补充了 <strong>12 道填空题和 8 道解答题</strong>，覆盖网络体系、IP 路由、TCP/UDP 与网络安全。</p>
+      <p>本站将你提供的《计算机网络基础题库及答案》扫描件中的 <strong>100 道选择题</strong>整理为在线练习，并补充了 <strong>100 道填空题和 8 道解答题</strong>，覆盖网络体系、IP 路由、TCP/UDP 与网络安全。</p>
       <p>支持顺序练习、随机练习、45 分钟模拟考试、填空题自动判分、解答题参考解析与自评、错题本、收藏和本地进度保存。所有学习数据仅保存在当前浏览器的 localStorage 中。</p>
-      <div class="about-grid"><div><span>题库</span><strong>120</strong></div><div><span>题型</span><strong>选择 / 填空 / 解答</strong></div><div><span>来源</span><strong>PDF + 扩展</strong></div></div>
+      <div class="about-grid"><div><span>题库</span><strong>208</strong></div><div><span>题型</span><strong>选择 / 填空 / 解答</strong></div><div><span>来源</span><strong>PDF + 扩展</strong></div></div>
     </div>
   </dialog>
 
